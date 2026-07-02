@@ -84,6 +84,25 @@ create table public.mortgage_leads (
 );
 ```
 
+## Deployment (GitHub Pages)
+
+This repo ships a GitHub Actions workflow (`.github/workflows/deploy.yml`) that
+builds the app and publishes it to GitHub Pages on every push to `main`.
+
+**One-time setup:** in the GitHub repo, open **Settings → Pages** and set
+**Source** to **GitHub Actions**. (Optionally add `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_ANON_KEY` under **Settings → Secrets and variables → Actions**
+to enable live lead capture.)
+
+After the workflow runs, the site is available at:
+
+```
+https://<your-github-username>.github.io/<repo-name>/
+```
+
+The workflow sets `VITE_BASE` to the repository subpath so assets resolve
+correctly; local `dev`/`preview` keep the default `/` base.
+
 ## Scripts
 
 | Command             | Description                          |
