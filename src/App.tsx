@@ -5,8 +5,10 @@ import LegalModal from "./components/LegalModal";
 import LandingSearch from "./components/LandingSearch";
 import DashboardView from "./components/DashboardView";
 import SuccessScreen from "./components/SuccessScreen";
+import RoiCalculator from "./roi-calculator/RoiCalculator";
 import {
   emptyInputs,
+  type AppView,
   type CalcMode,
   type ModalType,
   type PropertyInputs,
@@ -20,6 +22,7 @@ import {
  * it down into the step views and the persistent header/footer.
  */
 export default function App() {
+  const [view, setView] = useState<AppView>("hub");
   const [step, setStep] = useState<Step>(1);
   const [calcMode, setCalcMode] = useState<CalcMode>("investor");
   const [inputs, setInputs] = useState<PropertyInputs>(emptyInputs);
@@ -32,8 +35,18 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  /** Return to the landing search. */
-  const goHome = useCallback(() => goToStep(1), [goToStep]);
+  /** Switch top-level view and scroll to the top. */
+  const navigate = useCallback((next: AppView) => {
+    setView(next);
+    setModalType(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  /** Return to the hub landing search. */
+  const goHome = useCallback(() => {
+    setView("hub");
+    goToStep(1);
+  }, [goToStep]);
 
   /** Fully reset the application to a clean first-run state. */
   const resetAll = useCallback(() => {
@@ -46,10 +59,17 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
-      <Header onLogoClick={goHome} onReset={resetAll} />
+      <Header
+        onLogoClick={goHome}
+        onReset={resetAll}
+        view={view}
+        onNavigate={navigate}
+      />
 
       <main className="flex-1">
-        {step === 1 && (
+        {view === "calculator" && <RoiCalculator />}
+
+        {view === "hub" && step === 1 && (
           <LandingSearch
             calcMode={calcMode}
             setCalcMode={setCalcMode}
@@ -61,11 +81,11 @@ export default function App() {
           />
         )}
 
-        {step === 2 && (
+        {view === "hub" && step === 2 && (
           <DashboardView setStep={goToStep} calcMode={calcMode} inputs={inputs} />
         )}
 
-        {step === 3 && (
+        {view === "hub" && step === 3 && (
           <SuccessScreen inputs={inputs} onRestart={resetAll} />
         )}
       </main>

@@ -2,6 +2,9 @@
  * Shared domain types for the Climate-Smart Property Intelligence Hub.
  */
 
+/** Top-level app views: the lead-gen hub funnel or the ROI calculator. */
+export type AppView = "hub" | "calculator";
+
 /** The three views of the single-page flow. */
 export type Step = 1 | 2 | 3;
 
