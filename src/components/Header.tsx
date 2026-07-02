@@ -1,4 +1,4 @@
-import emblemUrl from "../assets/emblem.svg";
+import logoMarkUrl from "../assets/logo-mark.png";
 
 interface HeaderProps {
   /** Reset the flow back to step 1 (fired by the logo). */
@@ -22,10 +22,9 @@ export default function Header({ onLogoClick, onReset }: HeaderProps) {
           aria-label="Property Intelligence Hub — return to search"
         >
           <img
-            src={emblemUrl}
-            alt=""
-            aria-hidden="true"
-            className="h-10 w-10 shrink-0 transition-transform group-hover:scale-105"
+            src={logoMarkUrl}
+            alt="Property Intelligence Hub"
+            className="h-10 w-auto shrink-0 transition-transform group-hover:scale-105"
           />
           <span className="flex flex-col leading-none">
             <span className="text-base font-bold tracking-tight text-[#232C63]">

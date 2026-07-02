@@ -1,4 +1,4 @@
-import emblemUrl from "../assets/emblem.svg";
+import logoMarkUrl from "../assets/logo-mark.png";
 import type { ModalType } from "../types";
 
 interface FooterProps {
@@ -17,9 +17,13 @@ export default function Footer({ onOpenModal }: FooterProps) {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xl">
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white">
-                <img src={emblemUrl} alt="" aria-hidden="true" className="h-6 w-6" />
+            <div className="flex items-center gap-2.5">
+              <span className="flex items-center justify-center rounded-lg bg-white px-2 py-1.5">
+                <img
+                  src={logoMarkUrl}
+                  alt="Property Intelligence Hub"
+                  className="h-6 w-auto"
+                />
               </span>
               <span className="text-sm font-bold text-white">
                 Property Intelligence Hub
