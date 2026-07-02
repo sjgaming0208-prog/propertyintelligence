@@ -1,13 +1,14 @@
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import TextField from "./TextField";
-import type { CalcMode, Financials } from "../types";
+import type { CalcMode, PropertyInputs } from "../types";
 
 interface LandingSearchProps {
   calcMode: CalcMode;
   setCalcMode: (mode: CalcMode) => void;
-  financials: Financials;
-  setFinancials: React.Dispatch<React.SetStateAction<Financials>>;
-  onSubmit: () => void;
+  /** Previously-entered values, so returning to Step 1 preserves them. */
+  initialInputs: PropertyInputs;
+  /** Emits parsed, numeric inputs and advances the funnel. */
+  onSubmit: (inputs: PropertyInputs) => void;
 }
 
 interface AudienceTab {
@@ -15,6 +16,16 @@ interface AudienceTab {
   emoji: string;
   title: string;
   blurb: string;
+}
+
+/** Local, string-based form state for controlled inputs. */
+interface FormState {
+  postcode: string;
+  houseNumber: string;
+  price: string;
+  deposit: string;
+  rent: string;
+  bills: string;
 }
 
 const TABS: AudienceTab[] = [
@@ -32,22 +43,48 @@ const TABS: AudienceTab[] = [
   },
 ];
 
+/** Render a stored number as a form string ("" for empty/zero). */
+function toFormString(value: number): string {
+  return value > 0 ? String(value) : "";
+}
+
+/** Parse a form string to a finite number (0 when blank/invalid). */
+function toNumber(value: string): number {
+  const parsed = Number.parseFloat(value.replace(/,/g, ""));
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
 /**
  * LandingSearch — Step 1. Multi-audience property input form.
  */
 export default function LandingSearch({
   calcMode,
   setCalcMode,
-  financials,
-  setFinancials,
+  initialInputs,
   onSubmit,
 }: LandingSearchProps) {
-  const update = (key: keyof Financials) => (value: string) =>
-    setFinancials((prev) => ({ ...prev, [key]: value }));
+  const [form, setForm] = useState<FormState>({
+    postcode: initialInputs.postcode,
+    houseNumber: initialInputs.houseNumber,
+    price: toFormString(initialInputs.price),
+    deposit: toFormString(initialInputs.deposit),
+    rent: toFormString(initialInputs.rent),
+    bills: toFormString(initialInputs.bills),
+  });
+
+  const update = (key: keyof FormState) => (value: string) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit();
+    onSubmit({
+      postcode: form.postcode.trim(),
+      houseNumber: form.houseNumber.trim(),
+      price: toNumber(form.price),
+      deposit: toNumber(form.deposit),
+      rent: toNumber(form.rent),
+      bills: toNumber(form.bills),
+    });
   };
 
   return (
@@ -108,21 +145,21 @@ export default function LandingSearch({
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <TextField
             label="Property Postcode"
-            value={financials.postcode}
+            value={form.postcode}
             onChange={update("postcode")}
             placeholder="e.g. SW1A 1AA"
             required
           />
           <TextField
             label="House Number / Name"
-            value={financials.houseNumber}
+            value={form.houseNumber}
             onChange={update("houseNumber")}
             placeholder="e.g. 24 or Rose Cottage"
             required
           />
           <TextField
             label="Estimated Value / Price"
-            value={financials.price}
+            value={form.price}
             onChange={update("price")}
             placeholder="350,000"
             prefix="£"
@@ -132,7 +169,7 @@ export default function LandingSearch({
           />
           <TextField
             label="Deposit Capital"
-            value={financials.deposit}
+            value={form.deposit}
             onChange={update("deposit")}
             placeholder="70,000"
             prefix="£"
@@ -145,7 +182,7 @@ export default function LandingSearch({
             <div className="sm:col-span-2">
               <TextField
                 label="Expected Gross Rent (monthly)"
-                value={financials.rent}
+                value={form.rent}
                 onChange={update("rent")}
                 placeholder="1,650"
                 prefix="£"
@@ -159,7 +196,7 @@ export default function LandingSearch({
             <div className="sm:col-span-2">
               <TextField
                 label="Estimated Utility Bills (monthly)"
-                value={financials.bills}
+                value={form.bills}
                 onChange={update("bills")}
                 placeholder="280"
                 prefix="£"

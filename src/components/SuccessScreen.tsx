@@ -1,7 +1,7 @@
-import type { Financials } from "../types";
+import type { PropertyInputs } from "../types";
 
 interface SuccessScreenProps {
-  financials: Financials;
+  inputs: PropertyInputs;
   onRestart: () => void;
 }
 
@@ -10,11 +10,12 @@ interface SuccessScreenProps {
  * warm-up notice.
  */
 export default function SuccessScreen({
-  financials,
+  inputs,
   onRestart,
 }: SuccessScreenProps) {
-  const email = financials.email.trim() || "your email address";
-  const firstName = financials.name.trim().split(" ")[0];
+  const propertyLabel = inputs.houseNumber
+    ? `${inputs.houseNumber}, ${inputs.postcode.toUpperCase()}`
+    : inputs.postcode.toUpperCase() || "your property";
 
   return (
     <section className="animate-fade-in-up mx-auto max-w-2xl px-4 py-14 sm:px-6">
@@ -35,7 +36,7 @@ export default function SuccessScreen({
         </div>
 
         <h2 className="mt-6 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          {firstName ? `You're all set, ${firstName}!` : "You're all set!"}
+          You&apos;re all set!
         </h2>
 
         <p className="mt-3 text-base leading-relaxed text-slate-600">
@@ -43,9 +44,9 @@ export default function SuccessScreen({
           <strong className="text-slate-900">
             PropEco white-label PDF report
           </strong>{" "}
-          has been queued and is en route to{" "}
-          <strong className="text-emerald-700">{email}</strong>. It should land
-          in your inbox within a few minutes.
+          for <strong className="text-emerald-700">{propertyLabel}</strong> has
+          been queued and is en route to your email address. It should land in
+          your inbox within a few minutes.
         </p>
 
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-left">
@@ -72,9 +73,8 @@ export default function SuccessScreen({
             <p className="mt-1 text-sm leading-relaxed text-amber-800">
               An eco-finance advisory partner is already reviewing your property
               dataset configuration to perform an automated rate stress test.
-              Expect a call shortly on{" "}
-              <strong>{financials.phone.trim() || "your number"}</strong> to
-              discuss your climate-smart mortgage options.
+              Expect a call shortly on the number you provided to discuss your
+              climate-smart mortgage options.
             </p>
           </div>
         </div>

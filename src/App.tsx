@@ -6,37 +6,40 @@ import LandingSearch from "./components/LandingSearch";
 import DashboardView from "./components/DashboardView";
 import SuccessScreen from "./components/SuccessScreen";
 import {
-  emptyFinancials,
+  emptyInputs,
   type CalcMode,
-  type Financials,
   type ModalType,
+  type PropertyInputs,
   type Step,
 } from "./types";
 
 /**
  * App — global layout template and single-page state router.
  *
- * Owns all cross-cutting state (step, calcMode, financials, modalType) and
- * threads it down into the step views and the persistent header/footer.
+ * Owns all cross-cutting state (step, calcMode, inputs, modalType) and threads
+ * it down into the step views and the persistent header/footer.
  */
 export default function App() {
   const [step, setStep] = useState<Step>(1);
   const [calcMode, setCalcMode] = useState<CalcMode>("investor");
-  const [financials, setFinancials] = useState<Financials>(emptyFinancials);
+  const [inputs, setInputs] = useState<PropertyInputs>(emptyInputs);
   const [modalType, setModalType] = useState<ModalType>(null);
 
-  /** Return to the landing search without wiping typed data. */
-  const goHome = useCallback(() => {
-    setStep(1);
+  /** Advance/return to a given step and scroll to the top. */
+  const goToStep = useCallback((next: number) => {
+    setStep(next as Step);
     setModalType(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  /** Return to the landing search. */
+  const goHome = useCallback(() => goToStep(1), [goToStep]);
 
   /** Fully reset the application to a clean first-run state. */
   const resetAll = useCallback(() => {
     setStep(1);
     setCalcMode("investor");
-    setFinancials(emptyFinancials);
+    setInputs(emptyInputs);
     setModalType(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -50,33 +53,20 @@ export default function App() {
           <LandingSearch
             calcMode={calcMode}
             setCalcMode={setCalcMode}
-            financials={financials}
-            setFinancials={setFinancials}
-            onSubmit={() => {
-              setStep(2);
-              window.scrollTo({ top: 0, behavior: "smooth" });
+            initialInputs={inputs}
+            onSubmit={(next) => {
+              setInputs(next);
+              goToStep(2);
             }}
           />
         )}
 
         {step === 2 && (
-          <DashboardView
-            calcMode={calcMode}
-            financials={financials}
-            setFinancials={setFinancials}
-            onBack={goHome}
-            onLeadCaptured={() => {
-              setStep(3);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          />
+          <DashboardView setStep={goToStep} calcMode={calcMode} inputs={inputs} />
         )}
 
         {step === 3 && (
-          <SuccessScreen
-            financials={financials}
-            onRestart={resetAll}
-          />
+          <SuccessScreen inputs={inputs} onRestart={resetAll} />
         )}
       </main>
 
