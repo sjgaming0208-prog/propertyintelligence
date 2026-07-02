@@ -1,0 +1,5 @@
+npm create vite@latest property-calculator -- --template react-ts
+cd property-calculator
+npm install lucide-react clsx tailwind-merge
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
