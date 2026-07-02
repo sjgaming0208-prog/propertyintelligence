@@ -127,7 +127,8 @@ export default function SuccessScreen({
         </button>
 
         <p className="mt-6 text-xs leading-relaxed text-slate-400">
-          ClimateSmart Hub is a software service, not an FCA-regulated adviser or
+          Property Intelligence Hub is a software service, not an FCA-regulated
+          adviser or
           lender. Figures are illustrative estimates based on simulated PropEco
           parameters.
         </p>

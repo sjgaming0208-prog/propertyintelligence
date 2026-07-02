@@ -171,7 +171,10 @@ export default function DashboardView({
       // successful insert so the funnel remains fully usable.
       if (!supabase) {
         // eslint-disable-next-line no-console
-        console.info("[ClimateSmart] Simulated mortgage_leads insert:", payload);
+        console.info(
+          "[PropertyIntelligenceHub] Simulated mortgage_leads insert:",
+          payload,
+        );
         await new Promise((resolve) => setTimeout(resolve, 700));
         setStep(3);
         return;

@@ -1,4 +1,4 @@
-# ClimateSmart Hub — Climate-Smart Property Intelligence
+# Property Intelligence Hub — Climate-Smart Property Intelligence
 
 A single-page React + TypeScript application that calculates **risk-adjusted
 property metrics** using simulated [PropEco](https://propeco.io) climate
@@ -114,7 +114,7 @@ correctly; local `dev`/`preview` keep the default `/` base.
 
 ## Compliance
 
-ClimateSmart Hub is a **software service** — not an FCA-regulated financial
+Property Intelligence Hub is a **software service** — not an FCA-regulated financial
 advisory firm, broker or lender. All figures are illustrative estimates from
 simulated PropEco parameters. Personal data is stored under UK GDPR, purged
 automatically after 90 days, and shared with regulated brokers only with

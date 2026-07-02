@@ -1,3 +1,5 @@
+import emblemUrl from "../assets/emblem.svg";
+
 interface HeaderProps {
   /** Reset the flow back to step 1 (fired by the logo). */
   onLogoClick: () => void;
@@ -17,33 +19,21 @@ export default function Header({ onLogoClick, onReset }: HeaderProps) {
           type="button"
           onClick={onLogoClick}
           className="group flex items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          aria-label="ClimateSmart Hub — return to search"
+          aria-label="Property Intelligence Hub — return to search"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-sm transition-transform group-hover:scale-105">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M3 11.5 12 4l9 7.5" />
-              <path d="M5 10v10h14V10" />
-              <path d="M10 20v-6h4v6" />
-            </svg>
-          </span>
+          <img
+            src={emblemUrl}
+            alt=""
+            aria-hidden="true"
+            className="h-10 w-10 shrink-0 transition-transform group-hover:scale-105"
+          />
           <span className="flex flex-col leading-none">
-            <span className="text-base font-bold tracking-tight text-slate-900">
-              ClimateSmart{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">
-                Hub
-              </span>
+            <span className="text-base font-bold tracking-tight text-[#232C63]">
+              Property Intelligence{" "}
+              <span className="text-emerald-600">Hub</span>
             </span>
             <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
-              Property Intelligence
+              Climate-Smart Analytics
             </span>
           </span>
         </button>

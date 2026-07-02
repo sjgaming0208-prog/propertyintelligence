@@ -20,7 +20,7 @@ const CONTENT: Record<"privacy" | "terms", LegalContent> = {
     sections: [
       {
         heading: "1. Lawful basis & UK GDPR compliance",
-        body: "ClimateSmart Hub processes personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. We collect your name, email address, telephone number and property details on the lawful basis of your explicit consent, provided when you submit the lead-capture form.",
+        body: "Property Intelligence Hub processes personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. We collect your name, email address, telephone number and property details on the lawful basis of your explicit consent, provided when you submit the lead-capture form.",
       },
       {
         heading: "2. What we collect",
@@ -36,17 +36,17 @@ const CONTENT: Record<"privacy" | "terms", LegalContent> = {
       },
       {
         heading: "5. Your rights",
-        body: "You have the right to access, rectify, erase, restrict or object to the processing of your personal data, and the right to data portability. To exercise any of these rights, or to withdraw consent at any time, contact privacy@climatesmarthub.example. You may also lodge a complaint with the Information Commissioner's Office (ICO).",
+        body: "You have the right to access, rectify, erase, restrict or object to the processing of your personal data, and the right to data portability. To exercise any of these rights, or to withdraw consent at any time, contact privacy@propertyintelligencehub.example. You may also lodge a complaint with the Information Commissioner's Office (ICO).",
       },
     ],
   },
   terms: {
     title: "Terms of Service",
-    subtitle: "The agreement governing your use of ClimateSmart Hub",
+    subtitle: "The agreement governing your use of Property Intelligence Hub",
     sections: [
       {
         heading: "1. Software service — not financial advice",
-        body: "ClimateSmart Hub is a software and analytics tool. We are not an FCA-regulated financial advisory firm, mortgage broker or lender. Nothing on this platform constitutes regulated financial advice, a personal recommendation or an offer of credit.",
+        body: "Property Intelligence Hub is a software and analytics tool. We are not an FCA-regulated financial advisory firm, mortgage broker or lender. Nothing on this platform constitutes regulated financial advice, a personal recommendation or an offer of credit.",
       },
       {
         heading: "2. Illustrative, simulated figures",
@@ -62,7 +62,7 @@ const CONTENT: Record<"privacy" | "terms", LegalContent> = {
       },
       {
         heading: "5. Limitation of liability",
-        body: "To the fullest extent permitted by law, ClimateSmart Hub accepts no liability for any loss arising from reliance on the illustrative outputs of this tool. Your use of the service is entirely at your own risk.",
+        body: "To the fullest extent permitted by law, Property Intelligence Hub accepts no liability for any loss arising from reliance on the illustrative outputs of this tool. Your use of the service is entirely at your own risk.",
       },
     ],
   },

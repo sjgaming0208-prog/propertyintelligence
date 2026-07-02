@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 92" fill="none" role="img" aria-label="Property Intelligence Hub emblem">
+  <!-- Roof chevron: navy left slope, circuit-green right slope -->
+  <path d="M12 68 L64 15" stroke="#232C63" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M64 15 L116 68" stroke="#49AC4E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Inner double line, interwoven two-tone -->
+  <path d="M30 68 L64 33" stroke="#49AC4E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M64 33 L98 68" stroke="#232C63" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Eave returns -->
+  <path d="M12 68 L26 68" stroke="#232C63" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M116 68 L102 68" stroke="#49AC4E" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Circuit branch stubs -->
+  <path d="M27.6 52.1 L18 49 M13 49 L18 49" stroke="#49AC4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M44.2 35.1 L36 32" stroke="#232C63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M100.4 52.1 L110 49 M115 49 L110 49" stroke="#49AC4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M83.8 35.1 L92 32" stroke="#232C63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Chip "comb" fingers near the peak -->
+  <path d="M72 20 L72 26 M77 19 L77 25 M82 20 L82 26" stroke="#232C63" stroke-width="2.2" stroke-linecap="round" />
+
+  <!-- Nodes -->
+  <circle cx="64" cy="15" r="4.2" fill="#232C63" />
+  <circle cx="18" cy="49" r="3.1" fill="#49AC4E" />
+  <circle cx="36" cy="32" r="3.1" fill="#232C63" />
+  <circle cx="110" cy="49" r="3.1" fill="#49AC4E" />
+  <circle cx="92" cy="32" r="3.1" fill="#232C63" />
+  <circle cx="12" cy="68" r="3.6" fill="#232C63" />
+  <circle cx="116" cy="68" r="3.6" fill="#49AC4E" />
+
+  <!-- Base chip -->
+  <rect x="59.5" y="70" width="9" height="9" rx="1.6" fill="#232C63" />
+  <path d="M62 79 L62 84 M66 79 L66 84" stroke="#232C63" stroke-width="2.2" stroke-linecap="round" />
+</svg>

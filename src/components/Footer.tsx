@@ -1,3 +1,4 @@
+import emblemUrl from "../assets/emblem.svg";
 import type { ModalType } from "../types";
 
 interface FooterProps {
@@ -17,30 +18,19 @@ export default function Footer({ onOpenModal }: FooterProps) {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xl">
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-sky-500 text-white">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M3 11.5 12 4l9 7.5" />
-                  <path d="M5 10v10h14V10" />
-                </svg>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white">
+                <img src={emblemUrl} alt="" aria-hidden="true" className="h-6 w-6" />
               </span>
               <span className="text-sm font-bold text-white">
-                ClimateSmart Hub
+                Property Intelligence Hub
               </span>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-slate-400">
               <strong className="text-slate-200">
                 Important regulatory notice.
               </strong>{" "}
-              ClimateSmart Hub is a software and data-analytics service. We are{" "}
+              Property Intelligence Hub is a software and data-analytics
+              service. We are{" "}
               <strong className="text-slate-200">
                 not an FCA-regulated financial advisory firm, mortgage broker or
                 lender
@@ -79,7 +69,7 @@ export default function Footer({ onOpenModal }: FooterProps) {
         </div>
 
         <div className="mt-8 flex flex-col gap-2 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} ClimateSmart Hub. All rights reserved.</p>
+          <p>© {year} Property Intelligence Hub. All rights reserved.</p>
           <p>
             UK GDPR compliant · Data purged automatically after 90 days ·
             Registered in England &amp; Wales

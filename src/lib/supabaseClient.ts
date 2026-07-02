@@ -26,7 +26,7 @@ if (supabaseUrl && supabaseAnonKey) {
 } else if (import.meta.env.DEV) {
   // eslint-disable-next-line no-console
   console.warn(
-    "[ClimateSmart] Supabase credentials are not configured. " +
+    "[PropertyIntelligenceHub] Supabase credentials are not configured. " +
       "Lead submissions will be simulated locally. Set VITE_SUPABASE_URL " +
       "and VITE_SUPABASE_ANON_KEY to enable live inserts.",
   );
