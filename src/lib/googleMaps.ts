@@ -22,3 +22,53 @@ export function getGoogleMapsApiKey(): string | null {
 export function isGoogleMapsConfigured(): boolean {
   return getGoogleMapsApiKey() !== null;
 }
+
+const SCRIPT_ID = "google-maps-js";
+let loaderPromise: Promise<boolean> | null = null;
+
+/**
+ * Lazily load the Google Maps JavaScript API (once).
+ *
+ * Resolves `true` when the API is ready to use, or `false` when no key is
+ * configured or the script fails to load. Safe to call multiple times.
+ */
+export function loadGoogleMaps(): Promise<boolean> {
+  if (loaderPromise) return loaderPromise;
+
+  const key = getGoogleMapsApiKey();
+  if (!key || typeof window === "undefined" || typeof document === "undefined") {
+    loaderPromise = Promise.resolve(false);
+    return loaderPromise;
+  }
+
+  loaderPromise = new Promise<boolean>((resolve) => {
+    if (window.google?.maps) {
+      resolve(true);
+      return;
+    }
+
+    const existing = document.getElementById(SCRIPT_ID);
+    if (existing) {
+      existing.addEventListener("load", () => resolve(true));
+      existing.addEventListener("error", () => resolve(false));
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.async = true;
+    script.src =
+      "https://maps.googleapis.com/maps/api/js?" +
+      new URLSearchParams({
+        key,
+        libraries: "places",
+        loading: "async",
+        v: "weekly",
+      }).toString();
+    script.addEventListener("load", () => resolve(true));
+    script.addEventListener("error", () => resolve(false));
+    document.head.appendChild(script);
+  });
+
+  return loaderPromise;
+}

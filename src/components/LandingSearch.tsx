@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import TextField from "./TextField";
+import AddressAutocomplete from "./AddressAutocomplete";
 import type { CalcMode, PropertyInputs } from "../types";
 
 interface LandingSearchProps {
@@ -143,13 +144,23 @@ export default function LandingSearch({
         className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
       >
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <TextField
-            label="Property Postcode"
-            value={form.postcode}
-            onChange={update("postcode")}
-            placeholder="e.g. SW1A 1AA"
-            required
-          />
+          <div className="sm:col-span-2">
+            <AddressAutocomplete
+              label="Property Address or Postcode"
+              value={form.postcode}
+              onChange={update("postcode")}
+              onSelect={(address) =>
+                setForm((prev) => ({
+                  ...prev,
+                  postcode: address.postcode || prev.postcode,
+                  houseNumber: address.houseNumber || prev.houseNumber,
+                }))
+              }
+              placeholder="Start typing an address or postcode…"
+              required
+              hint="Start typing to search UK addresses, then pick a result to auto-fill."
+            />
+          </div>
           <TextField
             label="House Number / Name"
             value={form.houseNumber}
